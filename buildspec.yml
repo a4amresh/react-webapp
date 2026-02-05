@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 22
+    commands:
+      - echo "Installing dependencies..."
+      - npm install
+  pre_build:
+    commands:
+      - echo "Running Linting/Security Checks..."
+      - npm run lint
+  build:
+    commands:
+      - echo "Verifying Build..."
+      - npm run build
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
+
+# If tests fail, CodeBuild will exit with a non-zero code, 
+# and GitHub will mark the PR check as "Failed".
